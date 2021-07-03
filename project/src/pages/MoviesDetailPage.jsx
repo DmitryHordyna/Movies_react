@@ -29,13 +29,28 @@ class MoviesDetailPage extends Component{
     }
 
     render() {
-        const {film} =this.state
+        const { film } = this.state
+
+        const defaultPoster = "https://media.comicbook.com/files/img/default-movie.png"
+        const imgUrl="https://image.tmdb.org/t/p/w500/"
+
         return (
             <div>
                 <button type='button' onClick={this.handleGoBack}>Go Back</button>
                     <div>
                         <h3>{film.title}</h3>
-                        <p>{film.overview}</p>
+         
+                     <img
+                            src={film.poster_path !== undefined ? `${imgUrl}${film.poster_path}` : defaultPoster}
+                            alt={film.title}
+                            style={{
+                                width : '350px',
+                                heigth: "250px"
+                            }
+                        }
+                    />
+                               <p>{film.overview}</p>
+                  
                 </div>
 
                 <ul>
