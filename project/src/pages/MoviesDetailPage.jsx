@@ -44,9 +44,10 @@ class MoviesDetailPage extends Component{
             <div className={styles.container}>
                 <button className={styles.button} type='button' onClick={this.handleGoBack}><span>Go Back</span></button>
                  <div  className={styles.content}>
-                        <h3 className={styles.title}>{film.title}</h3>
-         
-                    <img
+                      
+          <h3 className={styles.title}>{film.title}</h3>
+                    <div className={styles.box}>
+                          <img
                         className={styles.img}
                             src={film.poster_path !== undefined ? `${imgUrl}${film.poster_path}` : defaultPoster}
                             alt={film.title}
@@ -55,7 +56,17 @@ class MoviesDetailPage extends Component{
                                 heigth: "250px"
                             }
                         }
-                    />
+                        />
+                        {/* <ul>
+                            
+                            <li><p>{film.tagline}</p></li>
+                            <li><p>{film.budget}</p></li>
+                            <li><p>{film.vote_average}</p></li>
+                            <li><p>{film.release_date}</p></li>
+                            <li><p>During: {film.runtime } min</p></li>
+                        </ul> */}
+                  
+                  </div>
                     <p className={styles.overview}>{film.overview}</p>
                  </div>
 

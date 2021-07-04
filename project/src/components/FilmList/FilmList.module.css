@@ -29,6 +29,11 @@
   font-size: 24px;
   background-color: rgba(58, 58, 61, 0.8);
   color: #fff;
+  transform: translateY(0);
+  transition: 0.5s;
+}
+.item:hover .title {
+  transform: translateY(100px);
 }
 
 .img {
