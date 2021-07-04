@@ -14,7 +14,9 @@ class MoviesDetailPage extends Component{
     }
     
     async componentDidMount() {
-        const id = this.props.location.state.id
+
+        const { location } = this.props
+        const id = location.state.id
 
         const response = await getFilmById(id)
         
@@ -23,13 +25,15 @@ class MoviesDetailPage extends Component{
      
     }
 
-    handleGoBack=()=> {
+    handleGoBack = () => {
+         const { location,history } = this.props
 
-        this.props.history.push(this.props.location.state.from, { query: this.props.location.state.query})
+        history.push(location.state.from, { query:location.state.query})
     }
 
     render() {
         const { film } = this.state
+       const {match,location} = this.props
 
         const defaultPoster = "https://media.comicbook.com/files/img/default-movie.png"
         const imgUrl="https://image.tmdb.org/t/p/w500/"
@@ -37,7 +41,7 @@ class MoviesDetailPage extends Component{
         return (
             <div>
                 <button type='button' onClick={this.handleGoBack}>Go Back</button>
-                    <div>
+                 <div>
                         <h3>{film.title}</h3>
          
                      <img
@@ -49,25 +53,25 @@ class MoviesDetailPage extends Component{
                             }
                         }
                     />
-                               <p>{film.overview}</p>
-                  
-                </div>
+                    <p>{film.overview}</p>
+                 </div>
 
                 <ul>
                     <li><Link to={{
-                        pathname:`${this.props.match.url}${routes.cast}`,
-                        state: this.props.location.state
+                        pathname:`${match.url}${routes.cast}`,
+                        state: location.state
                     }}>Cast</Link></li>
                     <li><Link to={{
-                        pathname:`${this.props.match.url}${routes.reviews}`,
-                        state: this.props.location.state
+                        pathname:`${match.url}${routes.reviews}`,
+                        state: location.state
                     }}>Reviews</Link></li>
                 </ul>
+
                 <Route
-                    path={`${this.props.match.path}${routes.cast}`}
+                    path={`${match.path}${routes.cast}`}
                     component={Cast} />
                 <Route
-                    path={`${this.props.match.path}${routes.reviews}`}
+                    path={`${match.path}${routes.reviews}`}
                     component={Reviews} />
             </div>
         )

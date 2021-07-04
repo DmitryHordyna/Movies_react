@@ -12,9 +12,10 @@ class MoviesPage extends Component{
     
 
     async componentDidMount() {
+const {location}=this.props
 
-       if (this.props.location.state !== null) {
-       const currentQuery=this.props.location.state.query
+       if (location.state !== null) {
+           const currentQuery = location.state.query
            const response = await getFilmsByQuery(currentQuery)
            
            this.setState({
@@ -33,23 +34,26 @@ class MoviesPage extends Component{
 
     }
 
-      handleChange = (e) => {
+    handleChange = (e) => {
+
     this.setState({query:e.target.value})
     }
 
     render() {
-        const {query,film}=this.state
+        const { query, film } = this.state
+        const { history } = this.props
+        
         return (
             <>
                 <form onSubmit={this.handleSubmit}>
                     <input
                         onChange={this.handleChange}
                         type='text'
-                        value={ query}/>
+                        value={query}/>
                     <button>Search</button>
                 </form>
                 
-                <FilmList movies={film} history={this.props.history} query={ query}/>
+                <FilmList movies={film} history={history} query={query}/>
             </>)
     }
 }

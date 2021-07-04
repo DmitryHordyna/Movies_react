@@ -19,13 +19,13 @@ class Home extends Component {
 }
 
     render() {
-        const {movies}=this.state
+        const { movies } = this.state
+        const { history } = this.props
+        
         return (
-           
-                <FilmList movies={movies} history={this.props.history}/>
-          
-        )
+           <FilmList movies={movies} history={history}/>
+          )
     }
 }
 
-export default Home
+export default Home;
