@@ -1,0 +1,32 @@
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  text-decoration: underline;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+
+  margin-left: -15px;
+  margin-top: -15px;
+}
+.item {
+  margin-top: 15px;
+  margin-left: 15px;
+  flex-basis: calc(100% / 5 - 15px);
+}
+
+.img {
+  width: 90px;
+  height: 100px;
+}
+.load {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+  text-decoration: underline;
+}

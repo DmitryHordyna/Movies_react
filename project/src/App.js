@@ -1,15 +1,25 @@
 //module
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router';
 //components
-import Home from './pages/Home';
-import MoviesDetailPage from './pages/MoviesDetailPage';
-import MoviesPage from './pages/MoviesPage';
 import AppBar from './components/AppBar/AppBar';
-
 import routes from './routes';
+
+import styles from './styles/module/Cast.module.css';
 //styles
 import './styles/base.scss';
+
+const Home = lazy(() =>
+  import('./pages/Home.jsx' /* webpackChunkName:" howe-pages" */),
+);
+const MoviesPage = lazy(() =>
+  import('./pages/MoviesPage.jsx' /* webpackChunkName:" MoviesPage-pages" */),
+);
+const MoviesDetailPage = lazy(() =>
+  import(
+    './pages/MoviesDetailPage.jsx' /* webpackChunkName:" MoviesDetailPage-pages" */
+  ),
+);
 
 class App extends Component {
   state = {};
@@ -17,12 +27,13 @@ class App extends Component {
     return (
       <React.Fragment>
         <AppBar />
-        <Switch>
-          <Route exact path={routes.home} component={Home} />
-          <Route path={routes.moviesDetails} component={MoviesDetailPage} />
-          <Route exact path={routes.movies} component={MoviesPage} />
-        </Switch>
-
+        <Suspense fallback={<h1 className={styles.load}>Loading...</h1>}>
+          <Switch>
+            <Route exact path={routes.home} component={Home} />
+            <Route path={routes.moviesDetails} component={MoviesDetailPage} />
+            <Route exact path={routes.movies} component={MoviesPage} />
+          </Switch>
+        </Suspense>
         <Redirect to={routes.home} />
       </React.Fragment>
     );

@@ -14,20 +14,16 @@ const FilmList = ({ movies, history, query }) => {
         <ul className={styles.MovieList}>
             {movies.map(({ id, title,poster_path }) =>
                 
-                <li key={id}>
+                <li key={id} className={styles.item}>
                     <NavLink to={{
                         pathname: `${routes.movies}/${id}`,
                         state: { id, from: history.location.pathname, query }
                     }}>
-                        <h3>{title}</h3>
+                        <h3 className={styles.title}>{title}</h3>
                         <img
                             src={poster_path !== null ? `${imgUrl}${poster_path}` : defaultPoster}
                             alt={title}
-                            style={{
-                                width : '350px',
-                                heigth:"250px"
-                            }
-                        }
+                            className={styles.img}
                         />
                   
                     </NavLink>

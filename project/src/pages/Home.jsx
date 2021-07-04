@@ -23,9 +23,11 @@ class Home extends Component {
         const { history } = this.props
         
         return (
-           <FilmList movies={movies} history={history}/>
-          )
+           
+<FilmList movies={movies} history={history}/>
+          
+        )
     }
 }
 
-export default Home;
+export default Home

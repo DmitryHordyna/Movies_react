@@ -1,13 +1,38 @@
 .MovieList {
-  margin: 0;
-  list-style: none;
-  padding-left: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  margin-left: -15px;
+  margin-right: -15px;
+}
 
-  /* display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  grid-gap: 24px; */
+.item {
+  position: relative;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  flex-basis: calc(100% / 4 - 15px);
+
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.title {
+  position: absolute;
+
+  text-align: center;
+
+  padding: 5px 10px;
+
+  font-family: sans-serif;
+  font-size: 24px;
+  background-color: rgba(58, 58, 61, 0.8);
+  color: #fff;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  background-size: auto auto;
 }

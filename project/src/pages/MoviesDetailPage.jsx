@@ -2,10 +2,12 @@ import { Component } from "react";
 import { Route,Link } from "react-router-dom";
 
 import { getFilmById } from '../services/fetchApi'
-import Reviews from '../components/Reviews'
+import Reviews from "../components/Reviews";
 import Cast from "../components/Cast";
 
 import routes from "../routes";
+
+import styles from '../styles/module/MoviesDetailPage.module.css'
 
 class MoviesDetailPage extends Component{
 
@@ -39,12 +41,13 @@ class MoviesDetailPage extends Component{
         const imgUrl="https://image.tmdb.org/t/p/w500/"
 
         return (
-            <div>
-                <button type='button' onClick={this.handleGoBack}>Go Back</button>
-                 <div>
-                        <h3>{film.title}</h3>
+            <div className={styles.container}>
+                <button className={styles.button} type='button' onClick={this.handleGoBack}><span>Go Back</span></button>
+                 <div  className={styles.content}>
+                        <h3 className={styles.title}>{film.title}</h3>
          
-                     <img
+                    <img
+                        className={styles.img}
                             src={film.poster_path !== undefined ? `${imgUrl}${film.poster_path}` : defaultPoster}
                             alt={film.title}
                             style={{
@@ -53,18 +56,18 @@ class MoviesDetailPage extends Component{
                             }
                         }
                     />
-                    <p>{film.overview}</p>
+                    <p className={styles.overview}>{film.overview}</p>
                  </div>
 
-                <ul>
-                    <li><Link to={{
+                <ul className={styles.more}>
+                    <li className={styles.item}><Link className={styles.t} to={{
                         pathname:`${match.url}${routes.cast}`,
                         state: location.state
-                    }}>Cast</Link></li>
-                    <li><Link to={{
+                    }}><span>Cast</span></Link></li>
+                    <li className={styles.item}><Link className={styles.t} to={{
                         pathname:`${match.url}${routes.reviews}`,
                         state: location.state
-                    }}>Reviews</Link></li>
+                    }}><span>Reviews</span></Link></li>
                 </ul>
 
                 <Route

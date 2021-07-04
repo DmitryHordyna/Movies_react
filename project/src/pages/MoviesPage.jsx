@@ -3,6 +3,8 @@ import { Component } from "react";
 import {getFilmsByQuery} from '../services/fetchApi'
 import FilmList from "../components/FilmList/FilmList";
 
+import styles from '../styles/module/MoviesPage.module.css'
+
 class MoviesPage extends Component{
     state = {
         query: '',
@@ -44,17 +46,19 @@ const {location}=this.props
         const { history } = this.props
         
         return (
-            <>
-                <form onSubmit={this.handleSubmit}>
+            <div className={styles.container}>
+                <form className={styles.form}
+                    onSubmit={this.handleSubmit}>
                     <input
+                        className={styles.input}
                         onChange={this.handleChange}
                         type='text'
                         value={query}/>
-                    <button>Search</button>
+                    <button className={styles.button}><span>Search</span></button>
                 </form>
                 
                 <FilmList movies={film} history={history} query={query}/>
-            </>)
+            </div>)
     }
 }
 
