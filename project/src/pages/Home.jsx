@@ -1,34 +1,27 @@
 
-import { Component } from 'react'
+import { useState,useEffect} from 'react'
 
 import FilmList from '../components/FilmList/'
 import {getTrendingFilms} from '../services/fetchApi'
 
 import styles from '../styles/module/Home.module.css'
 
-class Home extends Component {
+export default function Home() {
 
- 
-    state = {
-        movies:[]
-    }
+    const [movies, setMovies] = useState([])
 
-   async componentDidMount() {
-       const response = await getTrendingFilms()
-       this.setState({ movies: response.data.results })
- 
-}
+    useEffect(() => {
+        getTrendingFilms().then(res => {
+            console.log("a");
+           setMovies(res.data.results) 
+        })
+      
+    },[])
 
-    render() {
-        const { movies } = this.state
-        const { history } = this.props
-        
-        return (<div className={styles.container}>
-            <h2 className={styles.title}>Tranding today</h2>
-            <FilmList movies={movies} history={history} />
+
+   return (<div className={styles.container}>
+       <h2 className={styles.title}>Tranding today</h2>
+       <FilmList movies={movies} />
         </div>
-        )
-    }
+        ) 
 }
-
-export default Home
